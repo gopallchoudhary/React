@@ -1,9 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import "./App.css";
 
@@ -30,8 +25,9 @@ function App() {
     }
 
     setPassword(pass);
-  }, [length, numberAllowed, charAllowed]);
+  }, [length, numberAllowed, charAllowed, setPassword]);
 
+  //*copy-to-clipboard
   const copyToClipboard = useCallback(() => {
     passwordRef.current?.select(password);
     passwordRef.current?.setSelectionRange(0, 5);
@@ -41,6 +37,8 @@ function App() {
   useEffect(() => {
     passwordGenerator();
   }, [length, numberAllowed, charAllowed, passwordGenerator]);
+
+  //!--> cannot pass the passwordGenerator functioon directly because of the re-render limits in REACT (i.e. passwordGenerator())
 
   return (
     <>
@@ -81,7 +79,7 @@ function App() {
               type="checkbox"
               id="numberInput"
               defaultChecked={numberAllowed}
-              onChange={(prev) => {
+              onChange={() => {
                 setNumberAllowed((prev) => !prev);
               }}
             />
@@ -93,11 +91,11 @@ function App() {
               type="checkbox"
               id="charInput"
               defaultChecked={charAllowed}
-              onChange={(prev) => {
+              onChange={() => {
                 setCharAllowed((prev) => !prev);
               }}
             />
-            <label htmlFor="">Characters</label>
+            <label>Characters</label>
           </div>
         </div>
       </div>
