@@ -1,4 +1,4 @@
-import conf from "../conf/config";
+import conf from "../conf/conf";
 import { Client, Databases, ID, Storage, Query } from "appwrite";
 
 export class Service {
@@ -16,7 +16,7 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  //!<--Create Post-->
+  //!_1.<--Create Post-->
   async createDocument({
     title,
     content,
@@ -26,7 +26,7 @@ export class Service {
     userID,
   }) {
     try {
-      await this.databases.createDocument(
+      return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug,
@@ -43,7 +43,7 @@ export class Service {
     }
   }
 
-  //!<--Update Post-->
+  //!_2.<--Update Post-->
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
@@ -62,7 +62,7 @@ export class Service {
     }
   }
 
-  //!<--Delete Post-->
+  //!_3.<--Delete Post-->
   async deletePost(slug) {
     try {
       await this.databases.deleteDocument(
@@ -77,7 +77,7 @@ export class Service {
     }
   }
 
-  //!<--Get Post-->
+  //!_4.<--Get Post-->
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
@@ -90,7 +90,7 @@ export class Service {
     }
   }
 
-  //!<--Get Post-->
+  //!_5.<--Get Post-->
   async getPost(queries = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocuments(
@@ -105,13 +105,13 @@ export class Service {
 
   //.File Upload Service
 
-  //!<--Upload File-->
+  //!_6.<--Upload File-->
   async uploadFile(file) {
     try {
       return await this.bucket.createFile(
         conf.appwriteBucketId,
         ID.unique(),
-        file
+        file //file will be in the form of blob
       );
     } catch (error) {
       console.log("Appwrite service :: Create File :: Error ", error);
@@ -119,7 +119,7 @@ export class Service {
     }
   }
 
-  //!<--Delete File-->
+  //!_7.<--Delete File-->
   async deleteFile(fileId) {
     try {
       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
@@ -130,13 +130,9 @@ export class Service {
     }
   }
 
-
-  //!<--File Preview
+  //!_8.<--File Preview
   getFilePreview(fileId) {
-    return this.bucket.getFilePreview(
-        conf.appwriteBucketId,
-        fileId
-    )
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
   }
 }
 
