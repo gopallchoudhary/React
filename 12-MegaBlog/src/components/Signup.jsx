@@ -49,36 +49,41 @@ function Signup() {
         </p>
         {error && <p className="text-center text-red-600 mt-8">{error}</p>}
         <form onSubmit={handleSubmit(create)}>
-          /// Input 
-        <Input
-          label="Full Name: "
-          placeholder="Enter your full name: "
-          {...register, {
-            required: true,
-          }}
-        />
-        <Input
-          label="Email: "
-          placeholder="Enter your email:"
-          type="email"
-          {...register("email", {
-          required: true,
-          validate: {
-            matchPattern: (value) => {
-              /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) ||
-                  "Email address must be a valid address",
-            }
-          },
-          })}
-        />
-        <Input
-          label="password"
-          placeholder="enter your password"
-          type="password"
-          {...register("password", {
-            required: true,
-          })}
-        />
+          <div className="space-y-5">
+            <Input
+              label="Full Name: "
+              placeholder="Enter your full name: "
+              {...register, {
+                required: true,
+              }}
+            />
+            <Input
+              label="Email: "
+              placeholder="Enter your email:"
+              type="email"
+              {...register("email", {
+                required: true,
+                validate: {
+                  matchPattern: (value) => {
+                    /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) ||
+                      "Email address must be a valid address",
+              }
+                },
+              })}
+            />
+            <Input
+              label="password"
+              placeholder="enter your password"
+              type="password"
+              {...register("password", {
+                required: true,
+              })}
+            />
+            <Button type="submit" className="w-full">
+              Create Account
+            </Button>
+
+          </div>
         </form>
       </div>
     </div>
