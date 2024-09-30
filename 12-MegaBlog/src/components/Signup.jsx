@@ -48,6 +48,7 @@ function Signup() {
           </Link>
         </p>
         {error && <p className="text-center text-red-600 mt-8">{error}</p>}
+        ///<--FORM-->
         <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
@@ -82,7 +83,6 @@ function Signup() {
             <Button type="submit" className="w-full">
               Create Account
             </Button>
-
           </div>
         </form>
       </div>
