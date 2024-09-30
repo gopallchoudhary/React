@@ -48,6 +48,7 @@ function Signup() {
           </Link>
         </p>
         {error && <p className="text-center text-red-600 mt-8">{error}</p>}
+        ///{/*<--FORM-->*/} 
         <form onSubmit={handleSubmit(create)}>
           <div className="space-y-5">
             <Input
@@ -64,10 +65,9 @@ function Signup() {
               {...register("email", {
                 required: true,
                 validate: {
-                  matchPattern: (value) => {
+                  matchPattern: (value) => 
                     /^([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}$/.test(value) ||
                       "Email address must be a valid address",
-              }
                 },
               })}
             />
