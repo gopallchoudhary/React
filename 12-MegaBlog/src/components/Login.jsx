@@ -37,7 +37,7 @@ function Login() {
           </span>
         </div>
         <h2 className="text-center leading-tight text-2xl font-bold">
-          Sign into your account
+          Sign In into your account
         </h2>
         <p className="mt-2 text-center text-black/60 text-base">
           Don't have an account
