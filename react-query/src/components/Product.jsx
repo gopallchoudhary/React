@@ -7,23 +7,26 @@ const Product = () => {
 
 
   const fetchProducts = async () => {
-    const response = await fetch(
-      `https://dummyjson.com/products/${params.productId}`
-    );
+    const response = await fetch(`https://dummyjson.com/products/${params.productId}`);
     const data = await response.json();
 
     return data;
   };
 
-  const {
-    isLoading,
-    error,
-    data: product,
-  } = useQuery({
-    queryKey: ["product", params.productId],
-    queryFn: fetchProducts,
-    // staleTime: 10000,
-  });
+  // const {
+  //   isLoading,
+  //   error,
+  //   data: product,
+  // } = useQuery({
+  //   queryKey: ["product", params.productId],
+  //   queryFn: fetchProducts,
+  //   // staleTime: 10000,
+  // });
+
+  const {isLoading, error, data:  product} = useQuery({
+    queryKey: ["product"],
+    queryFn: fetchProducts
+  })
 
   // Mutations 
   const mutation = useMutation({
@@ -32,7 +35,7 @@ const Product = () => {
     }
   })
 
-  
+
 
   if (isLoading) {
     return <h3>Loading...</h3>

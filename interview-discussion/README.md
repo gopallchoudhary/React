@@ -1,8 +1,10 @@
-# React + Vite
+| Hook / Feature                          | Server Component       | Client Component                |
+| --------------------------------------- | ---------------------- | ------------------------------- |
+| `useState`, `useEffect`, `useRef`, etc. | ❌ Not allowed          | ✅ Allowed                       |
+| Async `await fetch()`                   | ✅ Allowed              | ⚠️ Allowed (but runs on client) |
+| Access `cookies()`, `headers()`         | ✅ Allowed              | ❌ Not allowed                   |
+| Access DOM / window                     | ❌ Not allowed          | ✅ Allowed                       |
+| Use Context Provider                    | ✅ Yes (server context) | ✅ Yes (client context)          |
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pure function -> function which does not have any side effects.

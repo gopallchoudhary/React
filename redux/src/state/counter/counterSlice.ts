@@ -1,8 +1,4 @@
-import {
-    createAsyncThunk,
-    createSlice,
-    type PayloadAction,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface counterState {
     value: number;

@@ -2,42 +2,27 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-const fetchProducts = async () => {
-  const response = await fetch("https://dummyjson.com/products");
-  const data = await response.json();
+async function fetchProducts() {
+  const response = await fetch("https://dummyjson.com/products")
+  const data = await response.json()
   return data.products;
-};
+}
+
 
 const Products = () => {
 
-  const { isLoading, error, data: products } = useQuery({ queryKey: ["products"], queryFn: fetchProducts, staleTime:10000, })
+  const {isLoading, error, data: products} = useQuery({
+    queryKey: ["Products"],
+    queryFn: fetchProducts,
+    staleTime: 10000
+  })
 
 
 
 
 
 
-  // const [products, setProducts] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null)
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       setIsLoading(true)
-  //       setError(null)
-  //       const response = await fetch("https://dummyjson.com/products");
-  //       const data = await response.json();
-  //       setIsLoading(false);
-  //       setProducts(data.products);
-  //     } catch (error) {
-  //       setError(error.message)
-  //       setIsLoading(false)
-  //     }
-  //   };
-  //   fetchProducts();
-  // }, []);
+  
 
 
   if (error) {
